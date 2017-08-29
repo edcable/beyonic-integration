@@ -1,0 +1,48 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.6.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+
+	//Add lombok library for generating getters, setters and toString
+	compile("org.projectlombok:lombok:1.16.18")
+
+	//Helps you to build rest service, consume rest and use RestController
+	compile("org.springframework.boot:spring-boot-starter-web")
+
+	// Add version 2.3 of the Joda time library
+	compile "joda-time:joda-time:2.3"
+
+	//Add jackson library for json to POJO conversions
+	compile("com.fasterxml.jackson.core:jackson-databind")
+
+	compile 'com.fasterxml.jackson.core:jackson-core'
+
+	//Add retrofit library to communicate with web services
+	compile 'com.squareup.retrofit2:retrofit:2.3.0'
+
+	//Add jackson converter to retrofit
+	compile 'com.squareup.retrofit2:converter-jackson:2.3.0'
+}
