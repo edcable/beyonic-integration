@@ -9,6 +9,8 @@ package org.mifos.beyonicIntegration.service.BeyonicService.domain;
 
 public class BeyonicPaymentState {
 
+    public static String SUCCESSFUL = "successful";
+
     public static String PROCESSED = "processed";
 
     public static String NEW = "new";

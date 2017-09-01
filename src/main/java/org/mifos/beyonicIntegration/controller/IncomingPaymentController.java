@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.io.IOException;
 
 @RestController
@@ -41,7 +40,7 @@ public class IncomingPaymentController {
 
     @RequestMapping(value = "outbound/payments", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Status> makePayment(@RequestBody OutboundRequest req){
-        //System.out.println(req.toString());
+        System.out.println(req.toString());
 
         Status paymentStatus = null;
 
@@ -57,16 +56,16 @@ public class IncomingPaymentController {
         paymentRequest.setAmount(req.getAmount());
         paymentRequest.setAccount(null);
         paymentRequest.setDescription("Testing payment with beyonic api");
-        paymentRequest.setCallback_url("https://3a62ce9c.ngrok.io/outbound/payments/callback");
+        paymentRequest.setCallback_url("https://39b38b43.ngrok.io/outbound/payments/callback");
         paymentRequest.setCurrency("BXC");
         paymentRequest.setMetadata(metadata);
 
-        //System.out.println(paymentRequest.toString());
+        System.out.println(paymentRequest.toString());
 
         //Send request to beyonic's api
         try {
             paymentResponse = paymentService.sendPayment(paymentRequest);
-            //System.out.println(paymentResponse.toString());
+            System.out.println(paymentResponse.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -35,8 +35,9 @@ public class CollectionService {
     @RequestMapping(value = "/collections", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> receiveCollection(@RequestBody CollectionNotification notif){
 
+        System.out.println(notif.getData().toString());
         try {
-            receptionStatus = sendCollectionToGateway(notif, new MfiProperties());
+            receptionStatus = sendCollectionToGateway(notif, mfiProperties);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,6 +48,10 @@ public class CollectionService {
 
     private Status sendCollectionToGateway(CollectionNotification notif, MfiProperties mfiProperties) throws IOException{
 
+        //Get Fineract Account number
+        System.out.println(mfiProperties.getMfiName());
+        String accNumber = notif.getData().getReference().substring(mfiProperties.getMfiName().length());
+
         //build inbound request from collection object
         InboundRequest inboundReq = new InboundRequest();
         inboundReq.setAmount(notif.getData().getAmount());
@@ -54,6 +59,9 @@ public class CollectionService {
         inboundReq.setDestinationRef(mfiProperties.getPhoneNumber());
         inboundReq.setPaymentMethod("mobile money");
         inboundReq.setPaymentMethodType("Beyonic");
+        inboundReq.setFineractAccNo(accNumber);
+
+        System.out.println(inboundReq.toString());
 
 
         //Send request to payment gateway via the retrofit service

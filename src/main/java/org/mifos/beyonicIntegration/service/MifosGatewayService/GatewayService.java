@@ -54,6 +54,7 @@ public class GatewayService {
         Call<Status> statusCall = gatewayInterface.sendInboundRequest(request, mfiName);
 
         Response<Status> response = statusCall.execute();
+        System.out.println(response.errorBody());
 
         if(response.isSuccessful()){
             responseStatus = response.body();

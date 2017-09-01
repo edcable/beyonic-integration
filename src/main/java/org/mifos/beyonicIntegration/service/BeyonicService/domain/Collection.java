@@ -29,7 +29,7 @@ public class Collection {
 
     private String reference;
 
-    private BeyonicPaymentState status;
+    private String status;
 
     private String created;
 

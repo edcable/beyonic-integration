@@ -8,9 +8,9 @@ import retrofit2.http.*;
 
 public interface GatewayInterface {
 
-    @POST("/inbound/requests")
+    @POST("inbound/requests")
     Call<Status> sendInboundRequest(@Body InboundRequest request, @Query("tenant") String mfiName);
 
-    @POST("/outbound/payments/status")
+    @POST("outbound/payments/status")
     Call<String> sendOutboundTransactionStatus(@Body Status transactStatus, @Query("requestId")Long requestID);
 }

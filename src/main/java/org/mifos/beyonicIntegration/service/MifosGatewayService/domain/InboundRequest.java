@@ -1,10 +1,12 @@
 package org.mifos.beyonicIntegration.service.MifosGatewayService.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.sql.Timestamp;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class InboundRequest {
 
     //Creation of TransactionType type

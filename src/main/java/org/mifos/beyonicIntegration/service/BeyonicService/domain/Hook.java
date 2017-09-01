@@ -9,7 +9,6 @@ package org.mifos.beyonicIntegration.service.BeyonicService.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.joda.time.DateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
@@ -17,9 +16,9 @@ public class Hook {
 
     private Long id;
 
-    private DateTime created;
+    private String created;
 
-    private DateTime updated;
+    private String updated;
 
     private String event;
 
