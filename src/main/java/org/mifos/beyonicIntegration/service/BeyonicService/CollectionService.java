@@ -13,6 +13,8 @@ import org.mifos.beyonicIntegration.service.MifosGatewayService.GatewayService;
 import org.mifos.beyonicIntegration.service.MifosGatewayService.domain.InboundRequest;
 import org.mifos.beyonicIntegration.service.MifosGatewayService.domain.Status;
 import org.mifos.beyonicIntegration.util.MfiProperties;
+import org.mifos.beyonicIntegration.util.StatusCategory;
+import org.mifos.beyonicIntegration.util.TransactionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,15 +35,23 @@ public class CollectionService {
     private Status receptionStatus;
 
     @RequestMapping(value = "/collections", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> receiveCollection(@RequestBody CollectionNotification notif){
+    public ResponseEntity<Status> receiveCollection(@RequestBody CollectionNotification notif){
+        Status collectionReceptionStatus = null;
 
         System.out.println(notif.getData().toString());
+
+        if(notif != null){
+            collectionReceptionStatus = new Status();
+            collectionReceptionStatus.setCode(String.valueOf(TransactionStatus.REQUEST_RECEPTION_SUCCESS_CODE));
+            collectionReceptionStatus.setDescription(TransactionStatus.REQUEST_RECEPTION_SUCCESS);
+            collectionReceptionStatus.setStatusCategory(StatusCategory.MMP_CATEGORY);
+        }
         try {
             receptionStatus = sendCollectionToGateway(notif, mfiProperties);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<>("Collection received", HttpStatus.OK);
+        return new ResponseEntity<>(collectionReceptionStatus, HttpStatus.OK);
 
     }
 
