@@ -41,7 +41,7 @@ public class CollectionService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<String>("Collection received", HttpStatus.OK);
+        return new ResponseEntity<>("Collection received", HttpStatus.OK);
 
     }
 

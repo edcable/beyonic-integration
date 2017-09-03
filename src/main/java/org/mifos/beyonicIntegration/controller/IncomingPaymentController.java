@@ -84,8 +84,15 @@ public class IncomingPaymentController {
     }
 
     @RequestMapping(value = "inbound/payments/status", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> receiveCallbackStatus(@RequestBody Status callbackStatus){
-        System.out.println(callbackStatus.toString());
-        return new ResponseEntity<>("Callback status received.", HttpStatus.OK);
+    public ResponseEntity<Status> receiveCallbackStatus(@RequestBody Status inboundStatus){
+        Status callbackStatus = null;
+        System.out.println(inboundStatus.toString());
+        if(inboundStatus != null){
+            callbackStatus = new Status();
+            callbackStatus.setCode(String.valueOf(TransactionStatus.INBOUND_STATUS_RECEIVED_CODE));
+            callbackStatus.setDescription(TransactionStatus.INBOUND_STATUS_RECEIVED);
+            callbackStatus.setStatusCategory(StatusCategory.MMP_CATEGORY);
+        }
+        return new ResponseEntity<>(callbackStatus, HttpStatus.OK);
     }
 }

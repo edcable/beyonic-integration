@@ -21,4 +21,8 @@ public class TransactionStatus {
 
     public static final Integer MMP_TRANSACTION_FAILURE_CODE = 4100;
 
+    public static final String INBOUND_STATUS_RECEIVED = "Inbound status received.";
+
+    public static final Integer INBOUND_STATUS_RECEIVED_CODE = 2700;
+
 }
