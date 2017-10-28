@@ -7,7 +7,7 @@
 
 package org.mifos.beyonicIntegration.service.BeyonicService.domain;
 
-public class BeyonicPaymentState {
+public interface BeyonicPaymentState {
 
     public static String SUCCESSFUL = "successful";
 

@@ -7,7 +7,7 @@
 
 package org.mifos.beyonicIntegration.util;
 
-public class TransactionStatus {
+public interface TransactionStatus {
 
     public static final String REQUEST_RECEPTION_SUCCESS = "Request was received";
 

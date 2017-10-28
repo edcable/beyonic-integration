@@ -9,7 +9,7 @@
 
 package org.mifos.beyonicIntegration.service.BeyonicService;
 
-public class BeyonicProperties {
+public interface BeyonicProperties {
 
     public static final  String API_ENDPOINT = "https://app.beyonic.com/api/";
 
