@@ -8,7 +8,7 @@
 
 package org.mifos.beyonicIntegration.util;
 
-public class StatusCategory {
+public interface StatusCategory {
 
     public static final int MMP_CATEGORY = 1;
 

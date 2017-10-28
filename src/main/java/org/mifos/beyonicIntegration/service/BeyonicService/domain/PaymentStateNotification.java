@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentStateNotification {
 
@@ -20,5 +19,21 @@ public class PaymentStateNotification {
 
     @JsonProperty("data")
     private PaymentData data;
+
+    public Hook getHook() {
+        return hook;
+    }
+
+    public void setHook(Hook hook) {
+        this.hook = hook;
+    }
+
+    public PaymentData getData() {
+        return data;
+    }
+
+    public void setData(PaymentData data) {
+        this.data = data;
+    }
 }
 
